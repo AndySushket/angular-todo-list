@@ -158,7 +158,7 @@
             $scope.Count = function () {
                 return $scope.tasks.length
             }
-            if ($scope.tasks) $scope.add = function () { //ховає випадаюче вікно
+            $scope.add = function () {
                 $scope.tasks.push({
                     task: $scope.value
                     , done: false
