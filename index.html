@@ -132,13 +132,14 @@
             <div class="editPanel" ng-show="check">
                 <form action="">
                     <input type="text" ng-model="editvalue">
-                    <button ng-click="saveEdit()">Save</button>
+                    <input type="button" value="Save" ng-click="saveEdit()">
                 </form>
             </div>
         </div>
     </div>
     <script>
         var app = angular.module("MyApp", [])
+        
         app.controller("myController", function ($scope) {
             $scope.tasks = [
                 {
@@ -153,32 +154,35 @@
                     task: 'Почути комплімент від Пєті'
                     , done: false
                 }];
+            
             $scope.Name = 'Ellyson';
             $scope.check = false;
             $scope.Count = function () {
                 return $scope.tasks.length
             }
-            $scope.add = function () {
-                $scope.tasks.push({
-                    task: $scope.value
-                    , done: false
-                });
-                $scope.value = '';
-            }
+            
             $scope.status = function (index) {
                 if ($scope.tasks[index].done != false) {
                     return "Done";
                 }
                 else return "in progress";
             }
+            
+            $scope.add = function () {
+                $scope.tasks.push({task:$scope.value,done:false});
+                $scope.value="";
+            };
+            
             $scope.delete = function (index) {
                 $scope.tasks.splice(index, 1);
             };
+            
             $scope.edit = function (index) {
                 $scope.check = true;
                 $scope.editvalue = $scope.tasks[index].task;
                 $scope.saveIndex = index;
             }
+            
             $scope.saveEdit = function () {
                 $scope.tasks[$scope.saveIndex].task = $scope.editvalue;
                 $scope.check = false;
